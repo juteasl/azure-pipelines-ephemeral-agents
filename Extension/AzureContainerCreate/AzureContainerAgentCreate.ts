@@ -244,14 +244,14 @@ export class azurecontainercreate {
         var memory = tl.getInput("memory", false) || "1.0";
 
         var addSPNToContainer = tl.getBoolInput("addSPNToContainer");
-        var skipAgentUniqueId = tl.getBoolInput("skipAgentUniqueId");
+        var addAgentUniqueId = tl.getBoolInput("addAgentUniqueId");
 
         var token = tl.getInput("azureDevOpsToken", true);
 
         var currentDate = new Date();
 
         var uniqueId = (tl.getVariable("Build_BuildId") || "") + (tl.getVariable("Release_ReleaseId") || "");
-        var agentName = (!skipAgentUniqueId) ?
+        var agentName = (!addAgentUniqueId) ?
                         agentPrefix.toLowerCase() : 
                         agentPrefix.toLowerCase() + `${uniqueId}${currentDate.getFullYear()}${currentDate.getMonth()}${currentDate.getDay()}${currentDate.getHours()}${currentDate.getMinutes()}${currentDate.getSeconds()}`;
 
