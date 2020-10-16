@@ -134,6 +134,14 @@
       "helpMarkDown": "Agent prefix. The agent name will always be unique but you can opt in to preppend a prefix"
     },
     {
+      "name": "addAgentUniqueId",
+      "type": "boolean",
+      "label": "Add Unique Id to Agent Name",
+      "defaultValue": "true",
+      "groupName": "agent",
+      "helpMarkDown": "Adds a unique identifier to the end of the agent prefix to create the agent name."
+    },
+    {
       "name": "vnetResourceGroupName",
       "type": "pickList",
       "label": "Virtual Network Resource group",
