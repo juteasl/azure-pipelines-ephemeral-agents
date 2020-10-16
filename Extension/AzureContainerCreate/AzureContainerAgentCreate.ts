@@ -252,7 +252,7 @@ export class azurecontainercreate {
 
         var uniqueId = (tl.getVariable("Build_BuildId") || "") + (tl.getVariable("Release_ReleaseId") || "");
 
-        if (addAgentUniqueId) {
+        if (addAgentUniqueId || agentName === "") {
             agentName = agentName + `${uniqueId}${currentDate.getFullYear()}${currentDate.getMonth()}${currentDate.getDay()}${currentDate.getHours()}${currentDate.getMinutes()}${currentDate.getSeconds()}`;
         }
 
