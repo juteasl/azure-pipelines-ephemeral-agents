@@ -236,7 +236,7 @@ export class azurecontainercreate {
 
         var resourceGroup = tl.getInput("ResourceGroupName", true);
         var location = tl.getInput("location", true);
-        var agentPrefix = tl.getInput("agentPrefix", false) || "";
+        var agentName = tl.getInput("agentName", false).toLowerCase() || "";
         var imageName = tl.getInput("imageName");
         var agentPool = tl.getInput('agentPool', true);
         var osType = tl.getInput("osType", true);
@@ -244,6 +244,7 @@ export class azurecontainercreate {
         var memory = tl.getInput("memory", false) || "1.0";
 
         var addSPNToContainer = tl.getBoolInput("addSPNToContainer");
+        var addAgentUniqueId = tl.getBoolInput("addAgentUniqueId");
 
         var token = tl.getInput("azureDevOpsToken", true);
 
@@ -251,7 +252,10 @@ export class azurecontainercreate {
 
         var uniqueId = (tl.getVariable("Build_BuildId") || "") + (tl.getVariable("Release_ReleaseId") || "");
 
-        var agentName = agentPrefix.toLowerCase() + `${uniqueId}${currentDate.getFullYear()}${currentDate.getMonth()}${currentDate.getDay()}${currentDate.getHours()}${currentDate.getMinutes()}${currentDate.getSeconds()}`
+        if (addAgentUniqueId) {
+            agentName = agentName + `${uniqueId}${currentDate.getFullYear()}${currentDate.getMonth()}${currentDate.getDay()}${currentDate.getHours()}${currentDate.getMinutes()}${currentDate.getSeconds()}`;
+        }
+
         var containerName = agentName;
 
         this.agentName = agentName;
